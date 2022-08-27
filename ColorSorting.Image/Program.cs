@@ -1,6 +1,7 @@
 ﻿using SkiaSharp;
 using Colourful;
 using ColorSorting.Utils;
+using System.Diagnostics;
 
 namespace ColorSorting.Image
 {
@@ -8,16 +9,27 @@ namespace ColorSorting.Image
     {
         static void Main(string[] args)
         {
-            const int size = 500;
+            const int size = 2000;
+
             RGBColor[] colors = RandomColorGenerator.GetRandomRgbColors(size);
             var old = GetBitmap(colors);
             SaveImage("before.png", old);
 
-            Span<RGBColor> sorted = stackalloc RGBColor[size];
-            Mine.ColorSorter.Sort(colors, sorted);
-            var a = GetBitmap(sorted.ToArray());
-            
-            SaveImage("after.png", a);
+            Mine(colors);
+            Colorful(colors);
+        }
+
+        private static void Colorful(RGBColor[] colors)
+        {
+            var sorted = ColorSorting.Colorful.ColorSorter.Sort(colors);
+            SaveImage("colorful.png", GetBitmap(sorted));
+        }
+
+        private static void Mine(RGBColor[] colors)
+        {
+            Span<RGBColor> sorted = stackalloc RGBColor[colors.Length];
+            ColorSorting.Mine.ColorSorter.Sort(colors, sorted);
+            SaveImage("mine.png", GetBitmap(sorted.ToArray()));
         }
 
         private static SKBitmap GetBitmap(RGBColor[] colors)
