@@ -153,23 +153,20 @@ public static class CIEDE2000
         return y;
     }
 
-    private const double TwoPI = 2 * PI;
-
     public static double RadianToDegree(in double rad)
     {
-        var deg = 360 * (rad / TwoPI);
-        return deg;
+        const double oneEightyOverPi = 57.2957795131d;
+        return rad * oneEightyOverPi;
     }
 
     public static double DegreeToRadian(in double deg)
     {
-        var rad = TwoPI * (deg / 360d);
-        return rad;
+        const double piOverOneEighty = 0.01745329251d;
+        return deg * piOverOneEighty;
     }
 
     public static double NormalizeDegree(in double deg)
     {
-        var d = deg % 360d;
-        return d >= 0 ? d : d + 360d;
+        return (deg + 360d) % 360d;
     }
 }
