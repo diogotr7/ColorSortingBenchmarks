@@ -11,13 +11,13 @@ public static class ColorSorter
 {
     private static readonly CIEDE2000ColorDifference _difference = new();
 
-    public static RGBColor[] Sort(RGBColor[] swatch)
+    public static RGBColor[] Sort(RGBColor[] colors)
     {
-        var sorted = new List<RGBColor>(swatch.Length);
-        var unvisited = new List<RGBColor>(swatch.Length);
+        var sorted = new List<RGBColor>(colors.Length);
+        var unvisited = new List<RGBColor>(colors.Length);
 
-        var current = swatch.MinBy(sel => _difference.ComputeDifference(ColorConverter.RgbToLab(sel), new LabColor()));
-        unvisited.AddRange(swatch);
+        var current = colors.MinBy(sel => _difference.ComputeDifference(ColorConverter.RgbToLab(sel), new LabColor()));
+        unvisited.AddRange(colors);
         unvisited.Remove(current);
         sorted.Add(current);
 
