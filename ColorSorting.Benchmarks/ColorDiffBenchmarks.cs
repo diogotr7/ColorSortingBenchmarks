@@ -20,14 +20,14 @@ public class ColorDiffBenchmarks
 
     public IEnumerable<LabColor> LeftSource { get; } = new LabColor[]
     {
-    Mine.ColorConverter.RgbToLab(new RGBColor(1,0,0)),
-    Mine.ColorConverter.RgbToLab(new RGBColor(0,1,0)),
+        Mine.ColorConverter.RgbToLab(new RGBColor(1,0,0)),
+        Mine.ColorConverter.RgbToLab(new RGBColor(0,1,0)),
     };
 
     public IEnumerable<LabColor> RightSource { get; } = new LabColor[]
     {
-    Mine.ColorConverter.RgbToLab(new RGBColor(1,1,0)),
-    Mine.ColorConverter.RgbToLab(new RGBColor(0,1,1)),
+        Mine.ColorConverter.RgbToLab(new RGBColor(1,1,0)),
+        Mine.ColorConverter.RgbToLab(new RGBColor(0,1,1)),
     };
 
     [Benchmark]

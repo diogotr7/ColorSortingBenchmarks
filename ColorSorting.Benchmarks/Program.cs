@@ -8,7 +8,8 @@ internal class Program
     static void Main(string[] args)
     {
         //Profile();
-        BenchmarkRunner.Run<ColorDiffBenchmarks>();
+        BenchmarkRunner.Run<MathBenchmarks>();
+        //BenchmarkRunner.Run<ColorDiffBenchmarks>();
         //BenchmarkRunner.Run<ColorSortingBenchmarks>();
         //BenchmarkRunner.Run<ColorSpaceConversionBenchmarks>();
     }
