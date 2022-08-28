@@ -16,30 +16,16 @@ public class ColorSortingBenchmarks
 {
     private readonly RGBColor[] _colors = RandomColorGenerator.GetRandomRgbColors(1000);
 
-    //[Benchmark]
-    //public void Mine()
-    //{
-    //    Span<RGBColor> result = stackalloc RGBColor[1000];
-    //    ColorSorting.Mine.ColorSorter.Sort(_colors, result);
-    //}
-
-    //[Benchmark]
-    //public void Colorful()
-    //{
-    //    var sorted = ColorSorting.Colorful.ColorSorter.Sort(_colors);
-    //}
-
     [Benchmark]
-    public void DiffMine()
+    public void Mine()
     {
-        ColorSorting.Mine.CIEDE2000.ComputeDifference(new LabColor(), new LabColor());
+        Span<RGBColor> result = stackalloc RGBColor[1000];
+        ColorSorting.Mine.ColorSorter.Sort(_colors, result);
     }
 
-    private static readonly CIEDE2000ColorDifference _diff = new();
-
     [Benchmark]
-    public void DiffColorful()
+    public void Colorful()
     {
-        _diff.ComputeDifference(new LabColor(), new LabColor());
+        var sorted = ColorSorting.Colorful.ColorSorter.Sort(_colors);
     }
 }
